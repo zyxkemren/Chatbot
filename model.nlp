@@ -1,0 +1,581 @@
+{
+  "settings": {
+    "languages": [
+      "id",
+      "en"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "id",
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "id": {
+        "settings": {
+          "locale": "id",
+          "trainByDomain": false,
+          "tag": "domain-manager-id",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "halo": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "hi": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "hai": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "p": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "hei": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "oi": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "woi": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "nama,siapa": {
+            "intent": "nama",
+            "domain": "default"
+          },
+          "kamu,nama,siapa": {
+            "intent": "nama",
+            "domain": "default"
+          },
+          "kamu,siapa": {
+            "intent": "nama",
+            "domain": "default"
+          },
+          "buat,siapa,yang": {
+            "intent": "creator",
+            "domain": "default"
+          },
+          "bikin,kamu,siapa,yang": {
+            "intent": "creator",
+            "domain": "default"
+          },
+          "buat,kamu,siapa,yang": {
+            "intent": "creator",
+            "domain": "default"
+          },
+          "buat,siapa": {
+            "intent": "creator",
+            "domain": "default"
+          },
+          "buat,kamu,oleh,siapa": {
+            "intent": "creator",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "sapa": "default",
+          "nama": "default",
+          "creator": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "halo",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "hai",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "p",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "hei",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "oi",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "woi",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa namamu",
+            "intent": "nama"
+          },
+          {
+            "domain": "default",
+            "utterance": "nama kamu siapa",
+            "intent": "nama"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa kamu",
+            "intent": "nama"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa yang membuatmu",
+            "intent": "creator"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa yang bikin kamu",
+            "intent": "creator"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa yang buat kamu",
+            "intent": "creator"
+          },
+          {
+            "domain": "default",
+            "utterance": "yang buat kamu siapa",
+            "intent": "creator"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa pembuatmu",
+            "intent": "creator"
+          },
+          {
+            "domain": "default",
+            "utterance": "kamu dibuat oleh siapa",
+            "intent": "creator"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "id",
+              "tag": "nlu-id",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "halo": 1,
+              "hi": 1,
+              "hai": 1,
+              "p": 1,
+              "hei": 1,
+              "oi": 1,
+              "woi": 1,
+              "siapa": 1,
+              "nama": 1,
+              "kamu": 1,
+              "yang": 1,
+              "buat": 1,
+              "bikin": 1,
+              "oleh": 1
+            },
+            "intents": {
+              "sapa": 1,
+              "nama": 1,
+              "creator": 1
+            },
+            "intentFeatures": {
+              "sapa": {
+                "halo": 1,
+                "hi": 1,
+                "hai": 1,
+                "p": 1,
+                "hei": 1,
+                "oi": 1,
+                "woi": 1
+              },
+              "nama": {
+                "siapa": 1,
+                "nama": 1,
+                "kamu": 1
+              },
+              "creator": {
+                "siapa": 1,
+                "yang": 1,
+                "buat": 1,
+                "bikin": 1,
+                "kamu": 1,
+                "oleh": 1
+              }
+            },
+            "featuresToIntent": {
+              "halo": [
+                "sapa"
+              ],
+              "hi": [
+                "sapa"
+              ],
+              "hai": [
+                "sapa"
+              ],
+              "p": [
+                "sapa"
+              ],
+              "hei": [
+                "sapa"
+              ],
+              "oi": [
+                "sapa"
+              ],
+              "woi": [
+                "sapa"
+              ],
+              "siapa": [
+                "nama",
+                "creator"
+              ],
+              "nama": [
+                "nama"
+              ],
+              "kamu": [
+                "nama",
+                "creator"
+              ],
+              "yang": [
+                "creator"
+              ],
+              "buat": [
+                "creator"
+              ],
+              "bikin": [
+                "creator"
+              ],
+              "oleh": [
+                "creator"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "id",
+                "tag": "nlu-id",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "halo",
+                "hi",
+                "hai",
+                "p",
+                "hei",
+                "oi",
+                "woi",
+                "siapa",
+                "nama",
+                "kamu",
+                "yang",
+                "buat",
+                "bikin",
+                "oleh"
+              ],
+              "intents": [
+                "sapa",
+                "nama",
+                "creator"
+              ],
+              "perceptrons": [
+                [
+                  4.009395599365234,
+                  4.009400367736816,
+                  4.009400367736816,
+                  4.009400367736816,
+                  4.009400844573975,
+                  4.009396076202393,
+                  4.009395599365234,
+                  -7.5131449699401855,
+                  -2.8305504322052,
+                  -2.8317971229553223,
+                  -1.3346335887908936,
+                  -2.763399600982666,
+                  -0.28327807784080505,
+                  -0.05547845736145973,
+                  10.276315868505487
+                ],
+                [
+                  -1.3432114124298096,
+                  -1.3428359031677246,
+                  -1.3424584865570068,
+                  -1.3420794010162354,
+                  -1.341698408126831,
+                  -1.341315507888794,
+                  -1.340930461883545,
+                  12.107844352722168,
+                  0.5671502351760864,
+                  0.564530074596405,
+                  -8.12286376953125,
+                  -13.367094039916992,
+                  -5.89160680770874,
+                  -3.7370412349700928,
+                  1.3530835581194969
+                ],
+                [
+                  -0.42240408062934875,
+                  -0.4089920222759247,
+                  -0.4025154709815979,
+                  -0.3975343108177185,
+                  -0.3917979896068573,
+                  -0.3875870406627655,
+                  -0.384192556142807,
+                  1.4526607990264893,
+                  -3.8616435527801514,
+                  -0.5240979194641113,
+                  0.7719272375106812,
+                  13.208916664123535,
+                  13.240301132202148,
+                  0.9186619520187378,
+                  -0.685159900796577
+                ]
+              ]
+            }
+          }
+        }
+      },
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "hello": {
+            "intent": "sapa",
+            "domain": "default"
+          },
+          "hey": {
+            "intent": "sapa",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "sapa": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "sapa"
+          },
+          {
+            "domain": "default",
+            "utterance": "hey",
+            "intent": "sapa"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "hello": 1,
+              "hey": 1
+            },
+            "intents": {
+              "sapa": 1
+            },
+            "intentFeatures": {
+              "sapa": {
+                "hello": 1,
+                "hey": 1
+              }
+            },
+            "featuresToIntent": {
+              "hello": [
+                "sapa"
+              ],
+              "hey": [
+                "sapa"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "hello",
+                "hey"
+              ],
+              "intents": [
+                "sapa"
+              ],
+              "perceptrons": [
+                [
+                  7.071227073669434,
+                  7.127616882324219,
+                  7.109124642023429
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "id",
+        "halo"
+      ],
+      [
+        "id",
+        "hi"
+      ],
+      [
+        "id",
+        "hai"
+      ],
+      [
+        "id",
+        "p"
+      ],
+      [
+        "id",
+        "hei"
+      ],
+      [
+        "id",
+        "oi"
+      ],
+      [
+        "id",
+        "woi"
+      ],
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hey"
+      ],
+      [
+        "id",
+        "siapa namamu"
+      ],
+      [
+        "id",
+        "nama kamu siapa"
+      ],
+      [
+        "id",
+        "siapa kamu"
+      ],
+      [
+        "id",
+        "siapa yang membuatmu"
+      ],
+      [
+        "id",
+        "siapa yang bikin kamu"
+      ],
+      [
+        "id",
+        "siapa yang buat kamu"
+      ],
+      [
+        "id",
+        "yang buat kamu siapa"
+      ],
+      [
+        "id",
+        "siapa pembuatmu"
+      ],
+      [
+        "id",
+        "kamu dibuat oleh siapa"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
