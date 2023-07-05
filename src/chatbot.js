@@ -125,6 +125,6 @@ client.on("messageCreate", (message) => {
 
 // Client login
 client.login(
-  "MTA1MjUxMDc4MDAxODQwMTM3MQ.GQUJvd.M0R2CL4CrgLTMdPMYVMsNB2nUS_odUmwnUCuIs"
+  "IDK"
 );
 console.log("CHATBOT STARTED");
