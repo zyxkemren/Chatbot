@@ -1,9 +1,9 @@
 const { NlpManager } = require("node-nlp");
-const { removeStopwords } = require("stopword");
 const readline = require("readline");
-const { intents } = require("./intents"); // Import file intents.js
+const { intents } = require("./intents");
 const data = require("./response");
-const cleanText = require("./function");
+const f = require("./function");
+const mongoose = require("mongoose");
 
 const manager = new NlpManager({ languages: ["id", "en"] });
 
@@ -24,18 +24,43 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+// Database
+mongoose.connect(
+  "mongodb+srv://ai:ai@cluster0.wvqheix.mongodb.net/?retryWrites=true&w=majority"
+);
+
+const Schema = new mongoose.Schema({
+  LastID: { type: Number, default: 0 },
+  LastUser: String,
+});
+
+const db = mongoose.model("db", Schema);
+
 // Random response
-function getReply(intent, usr) {
-  const sapaRule = data.rules.find((rule) => rule.pattern === intent);
+function getReply(intent, usr, input) {
+  let sapaRule = data.rules.find((rule) => rule.pattern === intent);
   if (sapaRule) {
     const { responses } = sapaRule;
     const randomIndex = Math.floor(Math.random() * responses.length);
     console.log("Intents:" + intent);
 
-    const { greets, yes, no, help, help2, server, desc, welcum } = data;
-    const username = "ZYX";
+    const { greets, yes, no, help, help2, server, desc, welcum, salah } = data;
+    const username = usr;
 
-    var randomResponse = responses[randomIndex].text;
+    let randomResponse = responses[randomIndex].text;
+
+    if (intent === 'question') {
+      return f.search(input)
+      .then((res) => {
+        return res;
+      })
+    }
+    if (intent === "mtk") {
+      const hasil = f.mtk(input);
+      randomResponse = randomResponse
+        .replace("{hasil}", hasil[0])
+        .replace("{question}", hasil[1]);
+    }
     randomResponse = randomResponse
       .replace("{greets}", getRandomItem(greets))
       .replace("{yes}", getRandomItem(yes))
@@ -44,7 +69,8 @@ function getReply(intent, usr) {
       .replace("{help2}", getRandomItem(help2))
       .replace("{welcum}", getRandomItem(welcum))
       .replace("{desc}", getRandomItem(desc))
-      .replace("{server}", getRandomItem(server));
+      .replace("{server}", getRandomItem(server))
+      .replace("{salah}", getRandomItem(salah));
 
     return randomResponse.replace("{username}", username);
   }
@@ -55,9 +81,9 @@ function getRandomItem(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-// Fungsi untuk menangani input pengguna
+// function buat inputnya coyy
 async function handleInput(input, usr) {
-  const cleanedInput = cleanText(input);
+  const cleanedInput = f.cleanText(input);
   const respon = await manager.process("id", cleanedInput);
   const intent = respon.intent;
   const enRespon = await manager.process("en", cleanedInput);
@@ -66,16 +92,16 @@ async function handleInput(input, usr) {
 
   const intentsToHandle = intents.map((intent) => intent.name);
   if (intentsToHandle.includes(intent)) {
-    const reply = getReply(intent, usr);
+    const reply = getReply(intent, usr, cleanedInput);
     return reply;
   } else if (intentsToHandle.includes(enIntent)) {
-    const reply = getReply(enIntent, usr);
+    const reply = getReply(enIntent, usr, cleanedInput);
     return reply;
   } else if (input.toLowerCase() === "quit") {
     rl.close();
     return "Terima kasih! Sampai jumpa lagi.";
   } else {
-    const reply = getReply("default");
+    const reply = getReply("question", usr, cleanedInput);
     return reply;
   }
 }
@@ -94,4 +120,4 @@ rl.on("close", () => {
   process.exit(0);
 });
 
-chat();
+module.exports = handleInput;

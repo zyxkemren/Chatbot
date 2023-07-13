@@ -1,5 +1,3 @@
-const Math = require('./function');
-
 const ai = `Anno-AI`;
 
 const greetings = [
@@ -78,7 +76,10 @@ const welcum = [
   `Aku ${ai}`
 ];
 
-
+const salah = [
+  `Maaf kalau salah.`,
+  `Jawabanku mungkin nggak akurat. Maaf kalau salah.`,
+];
 // Responses
 const rules = [
   {
@@ -139,18 +140,27 @@ const rules = [
     ],
   },
   {
-    pattern: /apa kamu manusia/i,
+    pattern: 'ip-server',
     responses: [
-      `Tidak, saya bukan manusia. Saya adalah Chatbot AI yang dibuat dengan Node.js.`,
+      { id: 100, text: `IP Server Minecraftnya adalah 'mc.anomally.xyz'` }
     ],
   },
   {
-    pattern: /keluar|bye|sampai jumpa/i,
+    pattern: 'mtk',
     responses: [
-      `Terima kasih sudah mengobrol dengan saya. Sampai jumpa!`,
-      `Sampai jumpa lain waktu!`,
+      { id: 101, text: `Hasilnya adalah {hasil}.` },
+      { id: 101, text: `Hasil dari {question} adalah {hasil}. {salah}` },
+      { id: 101, text: `Jawabannya adalah {hasil}. {salah}` },
+      { id: 101, text: `{question} = {hasil}.` },
+      { id: 101, text: `{hasil}. {salah}` },
     ],
     exit: true,
+  },
+  {
+    pattern: 'question',
+    responses: [
+      { id: 102, text: `{question}` },
+    ],
   },
   {
     pattern: 'default',
@@ -207,4 +217,5 @@ module.exports = {
   welcum: welcum,
   desc: desc,
   server: server,
+  salah: salah,
 };

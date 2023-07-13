@@ -1,14 +1,10 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const { NlpManager } = require("node-nlp");
-const axios = require("axios");
 const fetch = require("node-fetch");
 const handleInput = require('./chatbot/index')
 
 // Connect to database
-mongoose.connect(
-  "mongodb+srv://zyx24:24774212@cluster0.i70woq4.mongodb.net/?retryWrites=true&w=majority"
-);
 
 const Schema = new mongoose.Schema({
   Guild: String,
@@ -111,9 +107,10 @@ client.on("messageCreate", (message) => {
   if (message.author.id === client.user.id) return;
   if (message.channel.id === "1100191709339582484") {
     message.channel.sendTyping();
-    handleInput(message.content, message.author.username)
+    handleInput(message.content, message.member.nickname || message.author.username)
       .then((chat) => {
-        console.log("INI" + chat);
+        message.channel.sendTyping();
+        console.log("Discord Chat: " + chat);
         message.reply(chat);
       })
       .catch((error) => {
@@ -125,6 +122,6 @@ client.on("messageCreate", (message) => {
 
 // Client login
 client.login(
-  "IDK"
+  ""
 );
 console.log("CHATBOT STARTED");
